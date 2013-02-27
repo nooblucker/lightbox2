@@ -50,6 +50,8 @@ lightbox = new Lightbox options
     function LightboxOptions() {
       this.fileLoadingImage = 'images/loading.gif';
       this.fileCloseImage = 'images/close.png';
+	  this.fileDownloadImage = 'images/download.png';
+	  this.fileDownloadPrefix = 'download.php?filename=';
       this.resizeDuration = 700;
       this.fadeDuration = 500;
       this.labelImage = "Image";
@@ -123,7 +125,11 @@ lightbox = new Lightbox options
         "class": 'lb-close'
       }).append($('<img/>', {
         src: this.options.fileCloseImage
-      }))))))).appendTo($('body'));
+      }))).append($('<a/>', {
+	    "class": 'lb-download'
+	  }).append($('<img/>', {
+		"src": this.options.fileDownloadImage
+	  }))))))).appendTo($('body'));
       $('#lightboxOverlay').hide().on('click', function(e) {
         _this.end();
         return false;
@@ -147,6 +153,10 @@ lightbox = new Lightbox options
       });
       $lightbox.find('.lb-loader, .lb-close').on('click', function(e) {
         _this.end();
+        return false;
+      });
+      $lightbox.find('.lb-download').on('click', function(e) {
+		window.location = _this.options.fileDownloadPrefix + _this.album[_this.currentImageIndex].link;
         return false;
       });
     };
@@ -206,6 +216,7 @@ lightbox = new Lightbox options
         return _this.sizeContainer(preloader.width, preloader.height);
       };
       preloader.src = this.album[imageNumber].link;
+	  //$('.lb-download').attr('href', _this.album[imageNumber].link);
       this.currentImageIndex = imageNumber;
     };
 

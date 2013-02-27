@@ -169,13 +169,15 @@
   font-size: 11px;
 }
 /* line 112, ../sass/lightbox.sass */
-.lb-data .lb-close {
+.lb-data .lb-close,
+.lb-data .lb-download {
   width: 35px;
   float: right;
   padding-bottom: 0.7em;
   outline: none;
 }
 /* line 117, ../sass/lightbox.sass */
-.lb-data .lb-close:hover {
+.lb-data .lb-close:hover,
+.lb-data .lb-download:hover {
   cursor: pointer;
 }
